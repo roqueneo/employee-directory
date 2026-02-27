@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { EmployeesPage } from "./features/employees/presentation/pages/EmployeesPage";
+import { EmployeeCreatePage } from "./features/employees/presentation/pages/EmployeeCreatePage";
 import { EmployeeDetailDetailPage } from "./features/employee-detail/presentation/pages/EmployeeDetailDetailPage";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         </nav>
         <Routes>
           <Route path="/" element={<EmployeesPage />} />
+          <Route path="/employees/new" element={<EmployeeCreatePage />} />
           <Route path="/employees/:id" element={<EmployeeDetailDetailPage />} />
         </Routes>
       </div>
