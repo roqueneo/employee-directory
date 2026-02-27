@@ -23,15 +23,21 @@ const columns = [
     header: "Status",
     cell: (info) => {
       const status = info.getValue();
+      const isActive = status === "active";
       return (
         <span
-          className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
-            status === "active"
-              ? "bg-green-100 text-green-700"
-              : "bg-red-100 text-red-700"
+          className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ${
+            isActive
+              ? "bg-green-50 text-green-700 ring-1 ring-green-600/20"
+              : "bg-red-50 text-red-700 ring-1 ring-red-600/20"
           }`}
         >
-          {status}
+          <span
+            className={`inline-block h-1.5 w-1.5 rounded-full ${
+              isActive ? "bg-green-500" : "bg-red-500"
+            }`}
+          />
+          {isActive ? "Active" : "Inactive"}
         </span>
       );
     },
