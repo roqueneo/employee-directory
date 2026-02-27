@@ -51,6 +51,7 @@ ESLint v9 flat config extending recommended rules for JS, TypeScript, React hook
 
 - Use comments sparingly. Only comment complex code.
 - When creating a new RTK Query endpoint, always add proper TypeScript types for the response.
+- Always use context7 to check up-to-date docs when implementing or modifying code that uses RTK Query, React Hook Form, Zod, TanStack Table, or any third-party library.
 
 ## Mock API
 
