@@ -7,18 +7,20 @@ function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
-        <nav className="border-b border-gray-200 bg-white">
+        <nav aria-label="Main navigation" className="border-b border-gray-200 bg-white">
           <div className="mx-auto max-w-6xl px-6 py-4">
             <a href="/" className="text-lg font-semibold text-gray-900">
               Employee Directory
             </a>
           </div>
         </nav>
+        <main>
         <Routes>
           <Route path="/" element={<EmployeesPage />} />
           <Route path="/employees/new" element={<EmployeeCreatePage />} />
           <Route path="/employees/:id" element={<EmployeeDetailDetailPage />} />
         </Routes>
+        </main>
       </div>
     </BrowserRouter>
   );
