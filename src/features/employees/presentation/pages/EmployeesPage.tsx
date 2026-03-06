@@ -1,10 +1,20 @@
+import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useGetEmployeesQuery } from "../../data/employeesApi";
+import { useGetEmployeesQuery, useGetDepartmentsQuery } from "../../data/employeesApi";
+import { DepartmentFilter } from "../components/DepartmentFilter";
 import { EmployeesTable } from "../components/EmployeesTable";
 
 export function EmployeesPage() {
   const { data: employees, isLoading, error } = useGetEmployeesQuery();
+  const { data: departments } = useGetDepartmentsQuery();
   const navigate = useNavigate();
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+
+  const filteredEmployees = useMemo(() => {
+    if (!employees) return [];
+    if (!selectedDepartment) return employees;
+    return employees.filter((emp) => emp.department === selectedDepartment);
+  }, [employees, selectedDepartment]);
 
   if (isLoading) {
     return <p className="py-10 text-center text-gray-500">Loading employees…</p>;
@@ -29,8 +39,15 @@ export function EmployeesPage() {
           Add Employee
         </Link>
       </div>
+      <div className="mb-4">
+        <DepartmentFilter
+          departments={departments ?? []}
+          value={selectedDepartment}
+          onChange={setSelectedDepartment}
+        />
+      </div>
       <EmployeesTable
-        data={employees ?? []}
+        data={filteredEmployees}
         onRowClick={(employee) => navigate(`/employees/${employee.id}`)}
       />
     </div>
